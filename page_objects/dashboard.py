@@ -10,14 +10,9 @@ class Dashboard():
     def exit_modal_of_ad_if_applicable(self):
 
         try:
-            close_button_exists = self.page.get_by_role("button", name="CLOSE", exact=True).is_visible(timeout=2000)
-            if close_button_exists:
-                close_button1 = self.page.get_by_role("button", name="CLOSE", exact=True)
-                close_button1.click()
-                print("Successfully closed the ad modal...")
-            else:
-                print("Close button was not found.")
-                sys.exit()
+            close_button1 = self.page.get_by_role("button", name="CLOSE", exact=True)
+            close_button1.click()
+            print("Successfully closed the ad modal...")
         except TimeoutError:
             print("The ad modal did not appear or was not interactable - exiting function to address it...")
         except Exception as e:
@@ -54,16 +49,12 @@ class Dashboard():
         self.page.goto(url_for_next_weeks_session)
 
     def select_next_weeks_session(self):
-        # WILO - 6/4/25 3:32 PM
-
-        if self.expect(self.page.get_by_role("link", name="Welcome, Mobley Hesperweld!")).is_visible():
+        # Check if the link is visible
+        if self.page.get_by_role("link", name="Welcome, Mobley Hesperweld!").is_visible():
+            expect(self.page.get_by_role("link", name="Welcome, Mobley Hesperweld!")).to_be_visible()
             self.page.get_by_role("button", name="4.0-5.0 6:30P ").click()
         else:
             self.page.get_by_role("button", name=" 6:30P : Bedford - John Glenn Middle School – 4.0-").click()
-
-
-
-        # self.page.get_by_title("Reload").locator("i").click()
 
     def click_add_session(self):
         self.page.get_by_role("button", name="+ Add Session").click()
