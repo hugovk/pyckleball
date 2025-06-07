@@ -1,0 +1,49 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# uv generated files
+.python-version
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Test coverage reports
+htmlcov/
+.coverage
+*.cover
+*.py,cover
+.cache
+
+# Playwright-specific files
+playwright-report/
+test-results/
+trace.zip
+videos/
+screenshots/
+
+# Environment variables
+.env
+.env.*
