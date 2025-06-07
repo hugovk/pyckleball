@@ -1,0 +1,30 @@
+import os
+import sys
+
+from playwright.sync_api import sync_playwright, expect # type: ignore
+
+# sys.path.append('/home/scjmorris/projects/pickleball/pycleball')
+from page_objects.login_page import LoginPage
+
+print("login_page loaded successfully")
+
+# sys.path.append('/home/scjmorris/projects/pickleball/pycleball/')
+
+# def test_login_page():
+
+#     with sync_playwright() as p:
+#         browser = p.chromium.launch(headless=False, slow_mo=1000)
+#         page = browser.new_page()
+#         login_page = LoginPage(page)
+#         # login_page.pause()
+#         # page.pause()
+#         expect(page.get_by_role("button", name="Login")).to_be_visible()
+
+#         # login_page.populate_email(os.getenv("NORMAL_USER_NAME"))
+#         # login_page.click_login_after_entering_email()
+#         # login_page.populate_password(os.getenv("NORMAL_USER_PASSWORD"))
+#         # login_page.click_login_after_entering_password()
+
+if __name__ == "__main__":
+    # test_login_page()
+    print("running test")
