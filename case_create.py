@@ -23,12 +23,11 @@ def case_create():
         login_page.login_workflow(username, password)
 
         dashboard = Dashboard(page)
-        page.pause()
         dashboard.deal_with_modal_popups()
 
         # CREATE A SESSION FOR TESTING PURPOSES
         page.get_by_role("button", name="+ Add Session").click()
-        page.locator("#session_location").select_option("1082") # Woburn Raquet Club
+        page.locator("#session_location").select_option("1082") # Woburn Racquet Club
         page.click("#session_date")
         page.get_by_role("cell", name="20", exact=True).click()
         page.locator("#session_time").click()
