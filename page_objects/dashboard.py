@@ -1,7 +1,7 @@
 import sys
 import time
 from playwright.sync_api import sync_playwright, Page, TimeoutError, expect  # type: ignore
-from date_one_week_from_today import get_date_one_week_from_today  # type: ignore
+from date_variables import *
 
 class Dashboard():
     def __init__(self, page: Page):
@@ -33,9 +33,9 @@ class Dashboard():
         self.exit_modal_of_ad_if_applicable()
         self.exit_modal_of_code_of_conduct_if_applicable()
 
-    def navigate_to_specific_days_sessions(self, date_input_in_yyyy_mm_dd):
+    def navigate_to_sessions_starting_on(self, datetime_input):
         url_base = "https://playtimescheduler.com/index.php?go=next&startDate="
-        url_for_next_weeks_session = url_base + date_input_in_yyyy_mm_dd
+        url_for_next_weeks_session = url_base + get_one_week_earlier_url_string(datetime_input)
         self.page.goto(url_for_next_weeks_session)
 
     def navigate_to_next_weeks_sessions(self):

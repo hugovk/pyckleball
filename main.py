@@ -5,6 +5,7 @@ from playwright.sync_api import sync_playwright, Page, expect # type: ignore
 from dotenv import load_dotenv, find_dotenv # type: ignore
 from page_objects.login_page import LoginPage
 from page_objects.dashboard import Dashboard
+from date_variables import *
 
 load_dotenv(find_dotenv(), override=True)
 
@@ -25,7 +26,7 @@ def main():
         dashboard.navigate_to_next_weeks_sessions()
         dashboard.select_next_weeks_session()
         page.pause()
-        dashboard.navigate_to_specific_days_sessions("2025-06-14") # this takes you to the 21st (it has to be a week earlier)
+        # dashboard.navigate_to_sessions_starting_on(case_day_start) # this takes you to the 21st (it has to be a week earlier)
 
 if __name__ == "__main__":
     main()

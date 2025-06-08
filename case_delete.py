@@ -6,6 +6,7 @@ from playwright.sync_api import sync_playwright, Page, expect, TimeoutError # ty
 from dotenv import load_dotenv, find_dotenv # type: ignore
 from page_objects.login_page import LoginPage
 from page_objects.dashboard import Dashboard
+from date_variables import get_my_session_string
 
 load_dotenv(find_dotenv(), override=True)
 
@@ -27,7 +28,7 @@ def case_delete():
         #insert code here to delete a session.
         dashboard.click_my_sessions()
 
-        session_string_to_find = "Sat, Jun 21 @ 5:00-6:00AM"
+        session_string_to_find = get_my_session_string()
         try:
             page.get_by_role("link", name=session_string_to_find).click(timeout=3000)
         except TimeoutError:

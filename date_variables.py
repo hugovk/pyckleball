@@ -30,7 +30,20 @@ def get_my_session_string() -> str:
     my_sessions_string = f"{case_day_string_appearing_on_my_sessions_pt1}-{case_day_string_appearing_on_my_sessions_pt2}"
     return my_sessions_string
 
+def get_date_one_week_from_today():
+    today = datetime.now()
+    one_week_later = today + timedelta(weeks=1)
+    return one_week_later.strftime("%Y-%m-%d")
+
+def get_time_string_for_mobley_to_access_session() -> str:
+    # the start time in the format "6:00p"
+    string = case_day_start.strftime("%-I:%M%p")
+    return string[:-1]
+
+
 if __name__ == "__main__":
     print(f"'Add Session' date start format: {get_add_session_start_date()}")
     print(f"'My Session' Date Format String: {get_my_session_string()}")
     print(f"One week earlier url string    : {get_one_week_earlier_url_string(case_day_start)}")
+    print(f"Date one week from today       : {get_date_one_week_from_today()}")
+    print(f"Mobley's Session click time    : {get_time_string_for_mobley_to_access_session()}")

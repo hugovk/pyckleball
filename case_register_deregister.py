@@ -26,7 +26,7 @@ def registration_deregistration_setup():
         dashboard.deal_with_modal_popups()
 
         # Find the session to sign up for.
-        dashboard.navigate_to_specific_days_sessions("2025-06-14") # this takes you to the 21st (it has to be a week earlier)
+        dashboard.navigate_to_sessions_starting_on("2025-06-14") # this takes you to the 21st (it has to be a week earlier)
         page.get_by_role("button", name="4.0-5.0 6:00A").click()
         # page.pause()
 

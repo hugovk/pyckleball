@@ -6,6 +6,7 @@ from playwright.sync_api import sync_playwright, Page, expect # type: ignore
 from dotenv import load_dotenv, find_dotenv # type: ignore
 from page_objects.login_page import LoginPage
 from page_objects.dashboard import Dashboard
+from date_variables import *
 
 load_dotenv(find_dotenv(), override=True)
 
@@ -23,8 +24,9 @@ def case_deregister():
         dashboard.deal_with_modal_popups()
 
         # Find the session to sign up for.
-        dashboard.navigate_to_specific_days_sessions("2025-06-14") # this takes you to the 21st (it has to be a week earlier)
-        page.get_by_role("button", name="4.0-5.0 5:00A").click()
+        dashboard.navigate_to_sessions_starting_on(case_day_start) # this takes you to the 21st (it has to be a week earlier)
+        session_string_to_click = "4.0-5.0 " + get_time_string_for_mobley_to_access_session()
+        page.get_by_role("button", name=session_string_to_click).click()
         # page.pause()
 
         if not page.locator("role=link[name='Woburn Racquet Club']").is_visible():
