@@ -13,6 +13,10 @@ case_day_start_time_leading_zero = case_day_start.strftime("%I:%M %p")  # Output
 case_day_end_time_leading_zero = case_day_end.strftime("%I:%M %p")  # Output: 06:30 PM
 # case_day_of_week_three_letters = case_day_start.strftime("%a")  # Output: Sun
 
+def get_add_session_start_date() -> str:
+    session_start_date = case_day_start.strftime("%m/%d/%Y")
+    return session_start_date
+
 def get_one_week_earlier_url_string(datetime_argument: datetime) -> str:
     today = datetime_argument
     one_week_earlier = today + timedelta(weeks=-1)
@@ -27,5 +31,6 @@ def get_my_session_string() -> str:
     return my_sessions_string
 
 if __name__ == "__main__":
+    print(f"'Add Session' date start format: {get_add_session_start_date()}")
     print(f"'My Session' Date Format String: {get_my_session_string()}")
     print(f"One week earlier url string    : {get_one_week_earlier_url_string(case_day_start)}")
