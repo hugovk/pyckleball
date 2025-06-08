@@ -29,12 +29,13 @@ def case_create():
         page.get_by_role("button", name="+ Add Session").click()
         page.locator("#session_location").select_option("1082") # Woburn Racquet Club
         page.click("#session_date")
-        page.get_by_role("cell", name=case_day_day_one_digit, exact=True).click()
+        page.pause()
+        page.locator("#session_date").fill(get_add_session_start_date())
+        page.locator("#session_date").press("Enter")
         page.locator("#session_time").click()
         page.locator("#session_time").select_option(case_day_start_time_leading_zero)
         page.locator("#session_time_end").click()
         page.locator("#session_time_end").select_option(case_day_end_time_leading_zero)
-        page.pause()
         page.locator("#session_waitlist").select_option("0")
         page.locator("#session_title").click()
         page.locator("#session_title").fill("SINGLES MATCH")
@@ -43,6 +44,7 @@ def case_create():
         page.get_by_role("textbox").nth(2).click()
         page.get_by_role("textbox").nth(2).fill("Singles session.")
         page.get_by_role("checkbox", name="I acknowledge that a play").check()
+        page.pause()
         try:
             page.get_by_role("button", name="Add Session").click()
         except Exception as e:
