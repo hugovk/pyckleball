@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright, Page, expect # type: ignore
 from dotenv import load_dotenv, find_dotenv # type: ignore
 from page_objects.login_page import LoginPage
 from page_objects.dashboard import Dashboard
-from case_variables import *
+from date_variables import *
 
 load_dotenv(find_dotenv(), override=True)
 
@@ -29,15 +29,15 @@ def case_create():
         page.get_by_role("button", name="+ Add Session").click()
         page.locator("#session_location").select_option("1082") # Woburn Racquet Club
         page.click("#session_date")
-        page.get_by_role("cell", name="20", exact=True).click()
+        page.get_by_role("cell", name=case_day_day_one_digit, exact=True).click()
         page.locator("#session_time").click()
-        page.locator("#session_time").select_option("06:00 PM")
+        page.locator("#session_time").select_option(case_day_start_time_leading_zero)
         page.locator("#session_time_end").click()
-        page.locator("#session_time_end").select_option("06:30 PM")
+        page.locator("#session_time_end").select_option(case_day_end_time_leading_zero)
         page.pause()
         page.locator("#session_waitlist").select_option("0")
         page.locator("#session_title").click()
-        page.locator("#session_title").fill("MENS SINGLES MATCH")
+        page.locator("#session_title").fill("SINGLES MATCH")
         page.locator("#session_release").select_option("1") # option to open the session for sign ups 24 hours in advance
         page.get_by_role("radio", name="No").check()
         page.get_by_role("textbox").nth(2).click()
@@ -47,7 +47,7 @@ def case_create():
             page.get_by_role("button", name="Add Session").click()
         except Exception as e:
             print("There was some error creating a session.")
-        print(f"Successfully created a session for day {20} of the current month at 5:00 AM.")
+        print(f"Successfully created a session for {get_my_session_string()}.")
 
 if __name__ == "__main__":
     case_create()
