@@ -3,14 +3,17 @@ import sys
 
 from playwright.sync_api import sync_playwright, expect # type: ignore
 
-# sys.path.append('/home/scjmorris/projects/pickleball/pycleball')
+sys.path.append('/home/scjmorris/projects/pickleball/pycleball')
+print(os.environ.get("PYTHONPATH"))
 from page_objects.login_page import LoginPage
 
-print("login_page loaded successfully")
+# print("login_page loaded successfully")
 
 # sys.path.append('/home/scjmorris/projects/pickleball/pycleball/')
 
-# def test_login_page():
+def test_login_page():
+    my_page = LoginPage()
+    print(type(my_page))
 
 #     with sync_playwright() as p:
 #         browser = p.chromium.launch(headless=False, slow_mo=1000)
@@ -27,4 +30,4 @@ print("login_page loaded successfully")
 
 if __name__ == "__main__":
     # test_login_page()
-    print("running test")
+    print(test_login_page)
