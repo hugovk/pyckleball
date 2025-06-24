@@ -7,7 +7,7 @@ from page_objects.login_page import LoginPage
 from page_objects.dashboard import Dashboard
 from date_variables import *
 
-load_dotenv(find_dotenv(), override=True)
+# load_dotenv(find_dotenv(), override=True)
 
 
 def case_create():
@@ -16,11 +16,12 @@ def case_create():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, slow_mo=700)
         page = browser.new_page()
-        username = os.getenv("NORMAL_USER_NAME")
+
+        username = os.getenv("PRO_USER_NAME")
         password = os.getenv("NORMAL_USER_PASSWORD")
 
-        login_page = LoginPage(page)
-        login_page.login_workflow(username, password)
+        login_page = LoginPage(page, username, password)
+        login_page.login_workflow()
 
         dashboard = Dashboard(page)
         dashboard.deal_with_modal_popups()

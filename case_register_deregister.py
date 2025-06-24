@@ -16,7 +16,7 @@ def registration_deregistration_setup():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, slow_mo=500)
         page = browser.new_page()
-        username = os.getenv("ALTERNATIVE_USER_NAME")
+        username = os.getenv("REGISTRANT_USER_NAME")
         password = os.getenv("ALTERNATIVE_USER_PASSWORD")
 
         login_page = LoginPage(page)

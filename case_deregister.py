@@ -14,8 +14,8 @@ def case_deregister():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, slow_mo=500)
         page = browser.new_page()
-        username = os.getenv("ALTERNATIVE_USER_NAME")
-        password = os.getenv("ALTERNATIVE_USER_PASSWORD")
+        username = os.getenv("REGISTRANT_USER_NAME")
+        password = os.getenv("REGISTRANT_USER_PASSWORD")
 
         login_page = LoginPage(page)
         login_page.login_workflow(username, password)

@@ -23,7 +23,7 @@ def test_login_page():
 #         # page.pause()
 #         expect(page.get_by_role("button", name="Login")).to_be_visible()
 
-#         # login_page.populate_email(os.getenv("NORMAL_USER_NAME"))
+#         # login_page.populate_email(os.getenv("PRO_USER_NAME"))
 #         # login_page.click_login_after_entering_email()
 #         # login_page.populate_password(os.getenv("NORMAL_USER_PASSWORD"))
 #         # login_page.click_login_after_entering_password()

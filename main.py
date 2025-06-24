@@ -6,8 +6,14 @@ from dotenv import load_dotenv, find_dotenv # type: ignore
 from page_objects.login_page import LoginPage
 from page_objects.dashboard import Dashboard
 from date_variables import *
+# from sessions import RegistrantSession, ProSession
 
 load_dotenv(find_dotenv(), override=True)
+username = os.getenv("REGISTRANT_USER_NAME")
+password = os.getenv("REGISTRANT_USER_PASSWORD")
+
+# username = os.getenv("PRO_USER_NAME")
+# password = os.getenv("PRO_USER_PASSWORD")
 
 def main():
     print("Hello from pycleball!")
@@ -15,14 +21,18 @@ def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, slow_mo=1000)
         page = browser.new_page()
-        username = os.getenv("ALTERNATIVE_USER_NAME")
-        password = os.getenv("ALTERNATIVE_USER_PASSWORD")
+        # registrant_session = RegistrantSession(page)
+        # print(type(registrant_session))
+        # print(type(registrant_session.login_page))
+
+        # registrant_session.login_page.test_function()
 
         login_page = LoginPage(page)
         login_page.login_workflow(username, password)
 
         dashboard = Dashboard(page)
         dashboard.deal_with_modal_popups()
+        #THIS IS THE POINT AT WHICH THE REGISTRANT USER AND THE PRO USER DIVERGE
         dashboard.navigate_to_next_weeks_sessions()
         dashboard.select_next_weeks_session()
         page.pause()
