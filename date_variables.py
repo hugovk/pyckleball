@@ -1,8 +1,9 @@
 from datetime import datetime
 from datetime import timedelta
 
-# define a case_day which is Sunday, June 8th, 2025 at 6:00 PM Eastern Time
-case_day_start = datetime(2025, 6, 8, 18)  # Example date and time
+# define a case_day which is Sunday, August 8th, 2025 at 6:00 PM Eastern Time
+# case_day_start = datetime(2025, 8, 8, 18)  # Example date and time
+case_day_start = datetime(2025, 7, 29, 18)
 case_day_end   = case_day_start + timedelta(minutes=30)
 
 # case_day_year = case_day_start.strftime("%Y")  # Output: 2025
@@ -22,6 +23,9 @@ def get_one_week_earlier_url_string(datetime_argument: datetime) -> str:
     one_week_earlier = today + timedelta(weeks=-1)
     one_week_earlier_url_string = one_week_earlier.strftime("%Y-%m-%d")
     return one_week_earlier_url_string
+
+
+
 
 # MY SESSION STRING
 def get_my_session_string() -> str:

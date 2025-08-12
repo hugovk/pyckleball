@@ -1,7 +1,7 @@
+import sys
 import time
 import os
-import sys
-from playwright.sync_api import sync_playwright, Page, expect # type: ignore
+from playwright.sync_api import sync_playwright, Page, expect, TimeoutError # type: ignore
 
 from dotenv import load_dotenv, find_dotenv # type: ignore
 from page_objects.login_page import LoginPage
@@ -9,13 +9,18 @@ from page_objects.dashboard import Dashboard
 from date_variables import *
 
 load_dotenv(find_dotenv(), override=True)
+username = os.getenv("PRO_USER_NAME")
+password = os.getenv("PRO_USER_PASSWORD")
+
+# username = os.getenv("REGISTRANT_USER_NAME")
+# password = os.getenv("REGISTRANT_USER_PASSWORD")
 
 def case_register():
+    print("Initializing test case registration...")
+
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, slow_mo=500)
         page = browser.new_page()
-        username = os.getenv("REGISTRANT_USER_NAME")
-        password = os.getenv("ALTERNATIVE_USER_PASSWORD")
 
         login_page = LoginPage(page)
         login_page.login_workflow(username, password)
