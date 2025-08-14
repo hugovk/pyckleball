@@ -46,7 +46,6 @@ def initialize_case(user_type: Literal["pro", "registrant"]) -> Page:
     return page
 
 
-
 if __name__ == "__main__":
     # Example usage
     dashboard = initialize_case("pro")
