@@ -3,7 +3,7 @@ from datetime import timedelta
 
 # define a case_day which is Sunday, August 8th, 2025 at 6:00 PM Eastern Time
 # case_day_start = datetime(2025, 8, 8, 18)  # Example date and time
-case_day_start = datetime(2025, 7, 29, 18)
+case_day_start = datetime(2025, 9, 1, 18)
 case_day_end   = case_day_start + timedelta(minutes=30)
 
 # case_day_year = case_day_start.strftime("%Y")  # Output: 2025
@@ -25,8 +25,6 @@ def get_one_week_earlier_url_string(datetime_argument: datetime) -> str:
     return one_week_earlier_url_string
 
 
-
-
 # MY SESSION STRING
 def get_my_session_string() -> str:
     case_day_string_appearing_on_my_sessions_pt1 = case_day_start.strftime("%a, %b %d @ %-I:%M")  # Output: Sun, Jun 08 @ 06:00-06:30PM
@@ -44,10 +42,16 @@ def get_time_string_for_mobley_to_access_session() -> str:
     string = case_day_start.strftime("%-I:%M%p")
     return string[:-1]
 
+month_of_today = datetime.now().strftime("%B")
+mon_of_today = datetime.now().strftime("%b")
+year_of_today = datetime.now().strftime("%Y")
 
 if __name__ == "__main__":
-    print(f"'Add Session' date start format: {get_add_session_start_date()}")
-    print(f"'My Session' Date Format String: {get_my_session_string()}")
-    print(f"One week earlier url string    : {get_one_week_earlier_url_string(case_day_start)}")
-    print(f"Date one week from today       : {get_date_one_week_from_today()}")
-    print(f"Mobley's Session click time    : {get_time_string_for_mobley_to_access_session()}")
+    print(f"month_of_today-----------------------{month_of_today}")
+    print(f"mon_of_today-------------------------{mon_of_today}")
+    print(f"year_of_today------------------------{year_of_today}")
+    print(f"'Add Session' date start format-------{get_add_session_start_date()}")
+    print(f"'My Session' Date Format String-------{get_my_session_string()}")
+    print(f"One week earlier url string-----------{get_one_week_earlier_url_string(case_day_start)}")
+    print(f"Date one week from today--------------{get_date_one_week_from_today()}")
+    print(f"Mobley's Session click time-----------{get_time_string_for_mobley_to_access_session()}")
