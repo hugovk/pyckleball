@@ -14,7 +14,7 @@ case_day_end   = case_day + timedelta(minutes=30)
 case_day_start_time = case_day.strftime("%I:%M %p")  # Output: 06:00 PM
 case_day_end_time = case_day_end.strftime("%I:%M %p")  # Output: 06:30 PM
 case_day_mm_dd_yy = case_day.strftime("%m/%d/%Y")
-case_day_my_session_string = f"{case_day.strftime("%a, %b %d @ %-I:%M")}-{case_day_end.strftime("%-I:%M%p")}"
+case_day_my_session_string = f"{case_day.strftime("%a, %b %-d @ %-I:%M")}-{case_day_end.strftime("%-I:%M%p")}"
 case_day_hmmap = case_day.strftime("%-I:%M%p")[:-1]  # Output: 6:00PM
 
 #TARGET_DAY
