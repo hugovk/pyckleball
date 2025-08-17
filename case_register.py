@@ -29,7 +29,7 @@ def case_register():
         dashboard.deal_with_modal_popups()
 
         # Find the session to sign up for.
-        dashboard.navigate_to_sessions_starting_on(case_day_start) # this takes you to the 21st (it has to be a week earlier)
+        dashboard.navigate_to_sessions_starting_on(case_day) # this takes you to the 21st (it has to be a week earlier)
         session_string_to_click = "4.0-5.0 " + get_time_string_for_mobley_to_access_session()
         page.get_by_role("button", name=session_string_to_click).click()
         # page.pause()
