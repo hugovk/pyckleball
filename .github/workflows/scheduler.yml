@@ -1,4 +1,4 @@
-name: Schedule case_register.py
+name: Scheduler1 case_register.py
 
 on:
   schedule:
