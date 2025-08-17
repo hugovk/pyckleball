@@ -1,4 +1,4 @@
-name: Schedule case_register.py 1:37 PM V6
+name: Schedule case_register.py 2:00 PM V8
 
 on:
   schedule:
@@ -22,7 +22,8 @@ jobs:
       - name: Activate virtual environment and install uv
         run: |
           source .venv/bin/activate
-          uv pip install
+          pip install --upgrade pip
+          pip install uv
 
       - name: Install dependencies with uv
         run: |
@@ -33,6 +34,3 @@ jobs:
         run: |
           source .venv/bin/activate
           python case_register.py
-
-      - name: Run case_register.py
-        run: python case_register.py
