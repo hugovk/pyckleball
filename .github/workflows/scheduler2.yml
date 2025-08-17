@@ -1,4 +1,4 @@
-name: Scheduler2 with dependencies case_register.py
+name: Scheduler2 v4 case_register.py
 
 on:
   schedule:
