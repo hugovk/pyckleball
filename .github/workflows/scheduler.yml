@@ -1,22 +1,38 @@
-name: Scheduler2 v4 case_register.py
+name: Schedule case_register.py 1:25 PM
 
 on:
   schedule:
-    - cron: '*/11 * * * *' # Every 11 minutes
+    - cron: '*/10 * * * *' # Every 10 minutes
 
 jobs:
-  uv-example:
-    name: python
+  run-script:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-      - name: Install dependencies with uv (system environment)
-        run: uv pip install --group default --system
+      - name: Create virtual environment
+        run: python -m venv .venv
+
+      - name: Activate virtual environment and install uv
+        run: |
+          source .venv/bin/activate
+          pip install uv
+
+      - name: Install dependencies with uv
+        run: |
+          source .venv/bin/activate
+          uv install
+
+      - name: Run case_register.py
+        run: |
+          source .venv/bin/activate
+          python case_register.py
 
       - name: Run case_register.py
         run: python case_register.py
