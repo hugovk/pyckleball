@@ -1,4 +1,4 @@
-name: Schedule case_register.py 2:00 PM V8
+name: Schedule case_register.py 2:47 PM V9 - change 'uv install' to 'uv pip install'
 
 on:
   schedule:
@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies with uv
         run: |
           source .venv/bin/activate
-          uv install
+          uv pip install
 
       - name: Run case_register.py
         run: |
