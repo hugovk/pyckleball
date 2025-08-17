@@ -7,7 +7,7 @@ target_day = the variable that pycleball eventually intends to run.
 """
 
 #CASE_DAY
-case_day = datetime(2025, 9, 4, 18, 45)
+case_day = datetime(2025, 9, 5, 13, 45)
 case_day_end   = case_day + timedelta(minutes=30)
 case_day_start_time = case_day.strftime("%I:%M %p")  # Output: hh:mm PM
 case_day_end_time = case_day_end.strftime("%I:%M %p")  # Output: hh:mm PM
