@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies with uv
         run: |
           source .venv/bin/activate
-          uv pip install
+          uv pip install -r requirements.txt # included '-r' requirements.txt
 
       - name: Run case_register.py
         run: |
