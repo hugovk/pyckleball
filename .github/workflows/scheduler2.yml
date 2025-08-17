@@ -1,4 +1,4 @@
-name: Scheduler2 case_register.py
+name: Scheduler2w with dependencies case_register.py
 
 on:
   schedule:
@@ -17,6 +17,9 @@ jobs:
 
       - name: Install the project
         run: uv sync --locked --all-extras --dev
+
+      - name: Install dependencies with uv
+        run: uv pip install
 
       - name: Run case_register.py
         run: python case_register.py
