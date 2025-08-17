@@ -12,7 +12,8 @@ def case_register():
 
     page = initialize_case("registrant")
     page.goto(get_url_for_session_starting_on(case_day))
-    page.get_by_role("button", name=case_day_for_registering).click()
+    # page.pause()
+    page.get_by_role("button", name=case_day_for_registering).first.click()
     page.get_by_role("button", name="+ Add My Name").click()
     page.get_by_role("button", name="Close").click()
     print(f"SUCCESS: Case_register.py added the registrant to the session on {case_day_my_session_string}.")
