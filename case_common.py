@@ -29,7 +29,7 @@ def initialize_case(user_type: Literal["pro", "registrant"]) -> Page:
         password = os.getenv("REGISTRANT_USER_PASSWORD")
 
     if not username or not password:
-        raise ValueError("Environment variables for credentials are not set.")
+        raise ValueError(f"Environment variables {username} and/or {password} are not set.")
 
     playwright = sync_playwright().start()
     # browser = playwright.chromium.launch(headless=False, slow_mo=500)
@@ -44,7 +44,8 @@ def initialize_case(user_type: Literal["pro", "registrant"]) -> Page:
     dashboard = Dashboard(page)
     dashboard.deal_with_modal_popups()
 
-    return dashboard
+    return page
+
 
 if __name__ == "__main__":
     # Example usage
