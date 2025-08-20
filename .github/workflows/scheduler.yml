@@ -1,4 +1,4 @@
-name: Schedule case_register.py 2:59 PM V10 - change 'uv install' to 'uv pip install'
+name: Schedule run of case_register.py
 
 # on:
 #   schedule:
@@ -31,9 +31,10 @@ jobs:
         run: |
           source .venv/bin/activate
           uv sync
-          # uv pip install -r requirements.txt # included '-r' requirements.txt
 
       - name: Run case_register.py
+        env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           source .venv/bin/activate
           python case_register.py
