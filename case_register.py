@@ -2,20 +2,23 @@ from datetime import datetime
 # from playwright.sync_api import sync_playwright, Page, expect, TimeoutError # type: ignore
 
 from case_common import initialize_case
-from print_success import print_success
+from print_with_color import print_success, print_blue, print_yellow
 from date_variables import case_day, get_url_for_session_starting_on, case_day_for_registering, case_day_my_session_string
+from timer import Timer
 
 # CREATE A SESSION FOR TESTING PURPOSES
 def case_register():
-    print(f"ATTEMPT: Case_register.py is adding the registrant to the session on {case_day_my_session_string}....")
+    print_blue(f"ATTEMPT: Adding registrant to session on {case_day_my_session_string}....")
+    timer = Timer().start()
 
     page = initialize_case("registrant")
     page.goto(get_url_for_session_starting_on(case_day))
     page.get_by_role("button", name=case_day_for_registering).first.click()
     page.get_by_role("button", name="+ Add My Name").click()
     page.get_by_role("button", name="Close").click()
-    print_success(f"SUCCESS: Case_register.py added the registrant to the session on {case_day_my_session_string}.")
-    print_success(f"Program finished at: {datetime.now().strftime('%m/%d/%y %I:%M:%S %p')}")
+
+    timer.stop()
+    print_success(f"SUCCESS: Registrant was added to the session on {case_day_my_session_string}.")
 
 if __name__ == "__main__":
     case_register()

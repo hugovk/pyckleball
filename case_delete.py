@@ -2,7 +2,7 @@
 
 
 from case_common import initialize_case
-from print_success import print_success
+from print_with_color import print_success, print_blue, print_yellow
 from date_variables import case_day_my_session_string
 
 
