@@ -10,7 +10,7 @@ env:
   pro_user_name: ${{ secrets.PRO_USER_NAME }}
   pro_user_password: ${{ secrets.PRO_USER_PASSWORD }}
   registrant_user_name: ${{ secrets.REGISTRANT_USER_NAME }}
-  registrant_password: ${{ secrets.REGISTRANT_PASSWORD }}
+  registrant_user_password: ${{ secrets.REGISTRANT_USER_PASSWORD }}
 
 jobs:
   run-script:
@@ -43,4 +43,4 @@ jobs:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           source .venv/bin/activate
-          python verify_secrets_accessible2.py
+          python case_register.py

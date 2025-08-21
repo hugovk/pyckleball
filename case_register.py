@@ -1,4 +1,4 @@
-# from datetime import datetime
+from datetime import datetime
 # from playwright.sync_api import sync_playwright, Page, expect, TimeoutError # type: ignore
 
 from case_common import initialize_case
@@ -14,8 +14,8 @@ def case_register():
     page.get_by_role("button", name=case_day_for_registering).first.click()
     page.get_by_role("button", name="+ Add My Name").click()
     page.get_by_role("button", name="Close").click()
-    # print(f"SUCCESS: Case_register.py added the registrant to the session on {case_day_my_session_string}.")
     print_success(f"SUCCESS: Case_register.py added the registrant to the session on {case_day_my_session_string}.")
+    print_success(f"Program finished at: {datetime.now().strftime('%m/%d/%y %I:%M:%S %p')}")
 
 if __name__ == "__main__":
     case_register()

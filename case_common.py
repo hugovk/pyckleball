@@ -21,6 +21,8 @@ def initialize_case(user_type: Literal["pro", "registrant"]) -> Page:
     """
 
     load_dotenv(find_dotenv(), override=True)
+    # load_dotenv(find_dotenv(), override=False)
+    # load_dotenv()
     if user_type == "pro":
         username = os.getenv("PRO_USER_NAME")
         password = os.getenv("PRO_USER_PASSWORD")
