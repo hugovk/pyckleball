@@ -30,6 +30,8 @@ def initialize_case(user_type: Literal["pro", "registrant"]) -> Page:
         username = os.getenv("REGISTRANT_USER_NAME")
         password = os.getenv("REGISTRANT_USER_PASSWORD")
 
+    print(f"Username = {username}; Password = {password}")
+
     if not username or not password:
         raise ValueError(f"Environment variables {username} and/or {password} are not set.")
 
