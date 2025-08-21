@@ -37,12 +37,7 @@ jobs:
         run: |
           source .venv/bin/activate
           uv sync
-
-      - name : Install playwright
-        run: |
-          source .venv/bin/activate
           uv install playwright
-          python -m playwright install
 
       - name: Run case_register.py
         env:
