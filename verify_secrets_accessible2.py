@@ -1,7 +1,9 @@
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
-load_dotenv()
+load_dotenv(find_dotenv(), override=True)
+# load_dotenv(find_dotenv(), override=False)
+# load_dotenv()
 
 # MY_SUPER_REPO_SECRET = os.getenv("my_super_repo_secret")
 # PRO_USER_NAME = os.getenv("pro_user_name")
