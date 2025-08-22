@@ -7,7 +7,7 @@ target_day = the variable that pycleball eventually intends to run.
 """
 
 #CASE_DAY
-case_day = datetime(2025, 9, 5, 13, 45)
+case_day = datetime(2025, 9, 4, 13, 45)
 case_day_end   = case_day + timedelta(minutes=30)
 case_day_start_time = case_day.strftime("%I:%M %p")  # Output: hh:mm PM
 case_day_end_time = case_day_end.strftime("%I:%M %p")  # Output: hh:mm PM
@@ -41,8 +41,8 @@ def get_url_for_session_starting_on(datetime_input):
 
 
 if __name__ == "__main__":
-    print(f"'My Session' Date Format String--------------------------------{case_day_my_session_string}")
-    print(f"Mobley's Session click time------------------------------------{case_day_hmmAP}")
-    print(f"Mobley's registration string to click on ----------------------{case_day_for_registering}")
-    print(f"Formatted date one week before {case_day}-------------{get_date_one_week_before_today(case_day)}")
-    print(f"Tomorrow's next earliest sign up opportunity--------------------{day_next_sign_up_opp_24_hours()}")
+    print(f"case_day_my_session_string--------------------{case_day_my_session_string}")
+    print(f"case_day_hmmAP--------------------------------{case_day_hmmAP}")
+    print(f"case_day_for_registering----------------------{case_day_for_registering}")
+    print(f"get_date_one_week_before_today(case_day)------{get_date_one_week_before_today(case_day)}")
+    print(f"day_next_sign_up_opp_24_hours-----------------{day_next_sign_up_opp_24_hours()}")

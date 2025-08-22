@@ -9,15 +9,19 @@ from timer import Timer
 # CREATE A SESSION FOR TESTING PURPOSES
 def case_register():
     print_blue(f"ATTEMPT: Adding registrant to session on {case_day_my_session_string}....")
-    timer = Timer().start()
 
-    page = initialize_case("registrant")
-    page.goto(get_url_for_session_starting_on(case_day))
-    page.get_by_role("button", name=case_day_for_registering).first.click()
-    page.get_by_role("button", name="+ Add My Name").click()
-    page.get_by_role("button", name="Close").click()
+    with Timer() as timer:
+        user_type = "registrant"
+        page = initialize_case(user_type)
+        page.goto(get_url_for_session_starting_on(case_day))
+        # page.pause()
+        if user_type == "registrant":
+            page.get_by_role("button", name=case_day_for_registering).first.click()
+        elif user_type == "pro":
+            page.get_by_role("button", name="6:00P : Bedford - John").first.click()
+        page.get_by_role("button", name="+ Add My Name").click()
+        page.get_by_role("button", name="Close").click()
 
-    timer.stop()
     print_success(f"SUCCESS: Registrant was added to the session on {case_day_my_session_string}.")
 
 if __name__ == "__main__":
