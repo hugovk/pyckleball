@@ -3,8 +3,12 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv(), override=True)
 
-print("Trying to verify secrets are loaded...")
-biggest_secret1 = os.getenv("BIGGEST_SECRET")
-print(f"SEAN LOADED SECRETS SUCCESSFULLY - and my biggest secret is... '{biggest_secret1}'")
-super_repo_secret1 = os.getenv("SUPER_REPO_SECRET")
-print(f"SUPER REPO SECRET is: {super_repo_secret1}")
+PRO_USER_NAME = os.getenv("PRO_USER_NAME")
+PRO_USER_PASSWORD = os.getenv("PRO_USER_PASSWORD")
+REGISTRANT_USER_NAME = os.getenv("REGISTRANT_USER_NAME")
+REGISTRANT_USER_PASSWORD = os.getenv("REGISTRANT_USER_PASSWORD")
+
+print(f"PRO_USER_NAME is: {PRO_USER_NAME}")
+print(f"PRO_USER_PASSWORD is: {PRO_USER_PASSWORD}")
+print(f"REGISTRANT_USER_NAME is: {REGISTRANT_USER_NAME}")
+print(f"REGISTRANT_USER_PASSWORD is: {REGISTRANT_USER_PASSWORD}")

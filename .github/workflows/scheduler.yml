@@ -44,4 +44,5 @@ jobs:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           source .venv/bin/activate
-          python case_register.py
+          python verify_secrets_accessible.py
+          # python case_register.py
