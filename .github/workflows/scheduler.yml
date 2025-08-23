@@ -1,10 +1,8 @@
 name: Schedule run of case_register.py
-
+on: push
 # on:
 #   schedule:
 #     - cron: '*/120 * * * *' # Every 60 minutes
-
-on: push
 
 env:
   PRO_USER_NAME: ${{ secrets.PRO_USER_NAME }}
