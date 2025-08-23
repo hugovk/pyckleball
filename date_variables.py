@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-def produce_case_day(case_day: datetime):
+def produce_case_day_strings(case_day: datetime):
     case_day_end_datetime = case_day + timedelta(minutes=30)
 
     # Formatting the start and end times for "+ Add Session" workflow
@@ -22,7 +22,7 @@ def produce_case_day(case_day: datetime):
     #     'for_registering_bubble_mode': for_registering_bubble_mode,
     #     'for_registering_list_mode': for_registering_list_mode
     # }
-    case_day = {
+    return {
         'case_day': case_day,
         'add_session_start_time': add_session_start_time,
         'add_session_end_time': add_session_end_time,
@@ -30,7 +30,6 @@ def produce_case_day(case_day: datetime):
         'for_registering_bubble_mode': for_registering_bubble_mode,
         'for_registering_list_mode': for_registering_list_mode
     }
-    return case_day
 
 def day_next_sign_up_opp_24_hours() -> datetime:
     tomorrow = datetime.now() + timedelta(days=1)
@@ -40,6 +39,8 @@ def day_next_sign_up_opp_24_hours() -> datetime:
         return tomorrow.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
     else:
         return tomorrow.replace(minute=next_interval, second=0, microsecond=0)
+
+
 
 # def get_date_one_week_before_today(datetime_input: datetime):
 #     date_one_week_before_date_input = datetime_input - timedelta(weeks=1)
@@ -54,19 +55,21 @@ def get_url_for_session_on(datetime_input: datetime):
     return full_url
 
 if __name__ == "__main__":
-    case_day = produce_case_day(datetime(2025, 10, 4, 13, 45))
-    print(f"case_day['add_session_start_time']---------------{case_day['add_session_start_time']}")
-    print(f"case_day['add_session_end_time']-----------------{case_day['add_session_end_time']}")
-    print(f"case_day['my_session_string']--------------------{case_day['my_session_string']}")
-    print(f"case_day['for_registering_bubble_mode']----------{case_day['for_registering_bubble_mode']}")
-    print(f"case_day['for_registering_list_mode']------------{case_day['for_registering_list_mode']}")
+    case_day = datetime(1015, 10, 4, 13, 45)
+    case_day_strings = produce_case_day_strings(case_day)
+    print(f"case_day_strings['add_session_start_time']---------------{case_day_strings['add_session_start_time']}")
+    print(f"case_day_strings['add_session_end_time']-----------------{case_day_strings['add_session_end_time']}")
+    print(f"case_day_strings['my_session_string']--------------------{case_day_strings['my_session_string']}")
+    print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
+    print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
     print("")
     print("CASE DAY NEXT 24-HR SIGN UP OPPORTUNITY...")
-    case_day = produce_case_day(day_next_sign_up_opp_24_hours())
-    print(f"case_day['add_session_start_time']---------------{case_day['add_session_start_time']}")
-    print(f"case_day['add_session_end_time']-----------------{case_day['add_session_end_time']}")
-    print(f"case_day['my_session_string']--------------------{case_day['my_session_string']}")
-    print(f"case_day['for_registering_bubble_mode']----------{case_day['for_registering_bubble_mode']}")
-    print(f"case_day['for_registering_list_mode']------------{case_day['for_registering_list_mode']}")
+    case_day = day_next_sign_up_opp_24_hours()
+    case_day_strings = produce_case_day_strings(case_day)
+    print(f"case_day_strings['add_session_start_time']---------------{case_day_strings['add_session_start_time']}")
+    print(f"case_day_strings['add_session_end_time']-----------------{case_day_strings['add_session_end_time']}")
+    print(f"case_day_strings['my_session_string']--------------------{case_day_strings['my_session_string']}")
+    print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
+    print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
     print("")
-    print(f"get_url_for_session_on(case_day)-----------------{get_url_for_session_on(case_day['case_day'])}")
+    print(f"get_url_for_session_on(case_day)-----------------{get_url_for_session_on(case_day)}")

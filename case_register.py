@@ -1,29 +1,37 @@
 from datetime import datetime
-# from playwright.sync_api import sync_playwright, Page, expect, TimeoutError # type: ignore
+from playwright.sync_api import expect
 
 from case_common import initialize_case
-from print_with_color import print_success, print_blue, print_yellow
-from date_variables import case_day, get_url_for_session_starting_on, case_day_for_registering, case_day_my_session_string
+from print_with_color import print_success, print_blue, print_yellow, print_red
+from date_variables import produce_case_day_strings, get_url_for_session_on
 from timer import Timer
 
-# CREATE A SESSION FOR TESTING PURPOSES
-def case_register():
-    print_blue(f"ATTEMPT: Adding registrant to session on {case_day_my_session_string}....")
+
+
+def case_register(case_day_input: datetime, yes_pause: bool, user_type: str, headless_true: bool):
+    case_day_strings = produce_case_day_strings(case_day_input)
+    notification_input = case_day_strings["my_session_string"]
+    print_blue(f"ATTEMPT: Case_register.py is adding user to session on {notification_input}.")
 
     with Timer() as timer:
-        user_type = "registrant"
-        page = initialize_case(user_type)
-        page.goto(get_url_for_session_starting_on(case_day))
-        # page.pause()
-        if user_type == "registrant":
-            page.get_by_role("button", name=case_day_for_registering).first.click()
-        elif user_type == "pro":
-            # page.get_by_role("button", name="6:00P : Bedford - John").first.click()
-            page.get_by_role("button", name="6:00P : Bedford - John Glenn Middle School – 4.0-5.0").first.click()
-        page.get_by_role("button", name="+ Add My Name").click()
-        page.get_by_role("button", name="Close").click()
+        page = initialize_case(user_type, headless_true)
+        page.goto(get_url_for_session_on(case_day_input))
+        if yes_pause: page.pause()
 
-    print_success(f"SUCCESS: Registrant was added to the session on {case_day_my_session_string}.")
+        if user_type == "pro":
+            page.get_by_role("button", name=case_day_strings["for_registering_list_mode"]).first.click()
+        elif user_type == "registrant":
+            page.get_by_role("button", name=case_day_strings['for_registering_bubble_mode']).first.click()
+
+        if yes_pause: page.pause()
+        page.get_by_role("button", name="+ Add My Name").click()
+
+
+    print_success(f"SUCCESS: User was added to the session on {notification_input}.")
 
 if __name__ == "__main__":
-    case_register()
+    case_day = datetime(2025, 10, 4, 13, 45)
+    yes_pause = False
+    user_type = "registrant"
+    headless_mode = True
+    case_register(case_day, yes_pause, user_type, headless_mode)

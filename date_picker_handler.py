@@ -1,9 +1,8 @@
 from playwright.sync_api import Page
 from playwright.sync_api import expect, TimeoutError  # type: ignore
-# Import necessary functions for date manipulation
-from date_variables import *
+from datetime import datetime
 
-def date_picker_handler(page: Page, locator, datetime_input):
+def date_picker_handler(page: Page, locator, datetime_input: datetime):
     """
     Handles the date picker functionality for selecting a date in the Playtime Scheduler application.
     """

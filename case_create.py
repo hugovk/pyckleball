@@ -1,40 +1,48 @@
-# from playwright.sync_api import sync_playwright, Page, expect, TimeoutError # type: ignore
+from datetime import datetime
 
 
 from case_common import initialize_case
-from print_with_color import print_success, print_blue, print_yellow
-from date_variables import case_day, case_day_my_session_string, case_day_start_time, case_day_end_time
-from date_picker_handler import date_picker_handler
+from print_with_color import print_success, print_blue
+from date_variables import produce_case_day_strings
 from timer import Timer
+from date_picker_handler import date_picker_handler
 
-def case_create():
-    print(f"ATTEMPT: Case_create.py is creating pro session for {case_day_my_session_string}.")
+def case_create(case_day_input: datetime, yes_pause: bool, user_type: str, headless_true: bool, sign_up_24_hr_advance: bool = False):
+    case_day_strings = produce_case_day_strings(case_day_input)
+    notification_input = case_day_strings["my_session_string"]
+    print_blue(f"ATTEMPT: Case_create.py is creating pro session for {notification_input}.")
 
     with Timer() as timer:
-        dashboard = initialize_case("pro")
-        page = dashboard
+        page = initialize_case("pro", headless_true)
         page.get_by_role("button", name="+ Add Session").click()
 
         page.locator("#session_location").select_option("1082") # Woburn Racquet Club
-        date_picker_handler(page, page.click("#session_date"), case_day)
+        date_picker_handler(page, page.click("#session_date"), case_day_input)
         page.locator("#session_time").click()
-        page.locator("#session_time").select_option(case_day_start_time)
+        page.locator("#session_time").select_option(case_day_strings["add_session_start_time"])
         page.locator("#session_time_end").click()
-        page.locator("#session_time_end").select_option(case_day_end_time)
+        page.locator("#session_time_end").select_option(case_day_strings["add_session_end_time"])
         page.locator("#session_waitlist").select_option("0")
         page.locator("#session_title").click()
         page.locator("#session_title").fill("SINGLES MATCH")
-        # page.pause()
-        page.locator("#session_release").select_option("0") # option to open the session for sign ups immediately
-        # page.locator("#session_release").select_option("1") # option to open the session for sign ups 24 hours in advance
+
+        if sign_up_24_hr_advance:
+            page.locator("#session_release").select_option("1") # option to open the session for sign ups 24 hours in advance
+        elif not sign_up_24_hr_advance:
+            page.locator("#session_release").select_option("0") # option to open the session for sign ups immediately
+
         page.get_by_role("radio", name="No").check()
         page.get_by_role("textbox").nth(2).click()
         page.get_by_role("textbox").nth(2).fill("Singles session.")
         page.get_by_role("checkbox", name="I acknowledge that a play").check()
-        page.pause()
+        if yes_pause: page.pause()
         page.get_by_role("button", name="Add Session").click()
-        # print(f"SUCCESS: Case_create.py created session for {case_day_my_session_string}.")
-    print_success(f"SUCCESS: Case_create.py created session for {case_day_my_session_string}.")
+    print_success(f"SUCCESS: Case_create.py created session for {notification_input}.")
 
 if __name__ == "__main__":
-    case_create()
+    case_day = datetime(2025, 10, 4, 13, 45)
+    yes_pause = False
+    user_type = "pro"
+    headless_mode = True
+    sign_up_24_hr_advance = False
+    case_create(case_day, yes_pause, user_type, headless_mode, sign_up_24_hr_advance)
