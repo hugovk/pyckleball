@@ -38,8 +38,6 @@ jobs:
           python -m playwright install
 
       - name: Run case_register.py
-        env:
-          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           source .venv/bin/activate
           python verify_secrets_accessible.py
