@@ -18,7 +18,8 @@ def case_register():
         if user_type == "registrant":
             page.get_by_role("button", name=case_day_for_registering).first.click()
         elif user_type == "pro":
-            page.get_by_role("button", name="6:00P : Bedford - John").first.click()
+            # page.get_by_role("button", name="6:00P : Bedford - John").first.click()
+            page.get_by_role("button", name="6:00P : Bedford - John Glenn Middle School – 4.0-5.0").first.click()
         page.get_by_role("button", name="+ Add My Name").click()
         page.get_by_role("button", name="Close").click()
 

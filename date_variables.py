@@ -7,13 +7,31 @@ target_day = the variable that pycleball eventually intends to run.
 """
 
 #CASE_DAY
-case_day = datetime(2025, 9, 4, 13, 45)
-case_day_end   = case_day + timedelta(minutes=30)
-case_day_start_time = case_day.strftime("%I:%M %p")  # Output: hh:mm PM
-case_day_end_time = case_day_end.strftime("%I:%M %p")  # Output: hh:mm PM
-case_day_my_session_string = f"{case_day.strftime("%a, %b %-d @ %-I:%M")}-{case_day_end.strftime("%-I:%M%p")}" # Output: Ddd, Mmm d @ h:mm-h:mmAM
-case_day_hmmAP = case_day.strftime("%-I:%M%p")[:-1]  # Output: u:mmPM
-case_day_for_registering = "4.0-5.0 " + case_day_hmmAP
+def produce_case_day(case_day: datetime):
+    case_day_end_datetime = case_day + timedelta(minutes=30)
+
+    # Formatting the start and end times for "+ Add Session" workflow
+    add_session_start_time = case_day.strftime("%I:%M %p")  # Output: hh:mm PM
+    add_session_end_time = case_day_end_datetime.strftime("%I:%M %p")  # Output: hh:mm PM
+
+    # String on "My Sessions" dashboard
+    my_session_string = f"{case_day.strftime('%a, %b %-d @ %-I:%M')}-{case_day.strftime('%-I:%M%p')}"  # Output: Ddd, Mmm d @ h:mm-h:mmAM
+
+    hmmAP  = case_day.strftime("%-I:%M%p")[:-1]
+    # hhmmAP = case_day.strftime("%I:%M%p")[:-1]
+
+    for_registering_bubble_mode = "4.0-5.0 " + hmmAP
+    for_registering_list_mode = hmmAP + " : Bedford - John Glenn Middle School – 4.0-5.0"
+    # for_registering_list_mode = "6:00P : Bedford - John Glenn Middle School – 4.0-5.0"
+
+    return {
+        'add_session_start_time': add_session_start_time,
+        'add_session_end_time': add_session_end_time,
+        'my_session_string': my_session_string,
+        'hmmAP': hmmAP,
+        'for_registering_bubble_mode': for_registering_bubble_mode,
+        'for_registering_list_mode': for_registering_list_mode
+    }
 
 def day_next_sign_up_opp_24_hours():
     tomorrow = datetime.now() + timedelta(days=1)
@@ -41,8 +59,13 @@ def get_url_for_session_starting_on(datetime_input):
 
 
 if __name__ == "__main__":
-    print(f"case_day_my_session_string--------------------{case_day_my_session_string}")
-    print(f"case_day_hmmAP--------------------------------{case_day_hmmAP}")
-    print(f"case_day_for_registering----------------------{case_day_for_registering}")
-    print(f"get_date_one_week_before_today(case_day)------{get_date_one_week_before_today(case_day)}")
-    print(f"day_next_sign_up_opp_24_hours-----------------{day_next_sign_up_opp_24_hours()}")
+    case_day = produce_case_day(datetime(2025, 10, 4, 13, 45))
+    print(f"case_day['add_session_start_time']---------------{case_day['add_session_start_time']}")
+    print(f"case_day['add_session_end_time']-----------------{case_day['add_session_end_time']}")
+    print(f"case_day['my_session_string']--------------------{case_day['my_session_string']}")
+    print(f"case_day['hmmAP']----- --------------------------{case_day['hmmAP']}")
+    print(f"case_day['for_registering_bubble_mode']----------{case_day['for_registering_bubble_mode']}")
+    print(f"case_day['for_registering_list_mode']------------{case_day['for_registering_list_mode']}")
+
+    # print(f"get_date_one_week_before_today(case_day)------{get_date_one_week_before_today(case_day)}")
+    # print(f"day_next_sign_up_opp_24_hours-----------------{day_next_sign_up_opp_24_hours()}")
