@@ -9,11 +9,12 @@ from case_delete import case_delete
 from case_register import case_register
 from case_deregister import case_deregister
 from print_with_color import print_blue
-from date_variables import day_next_sign_up_opp_24_hours
+from date_variables import day_next_sign_up_opp_24_hours, sign_up_today_for_session_in_24_hours
 
 
 # case_day = datetime(2025, 10, 5, 13, 45)
 case_day = day_next_sign_up_opp_24_hours()
+# case_day = sign_up_today_for_session_in_24_hours()
 
 headless_mode = True
 yes_pause = False
@@ -26,7 +27,8 @@ def job():
     # case_deregister(case_day, yes_pause, "registrant", headless_mode)
     sys.exit("Job completed. Exiting script.")  # Terminate the script
 
-datetime_to_run = datetime.now()
+datetime_to_run = sign_up_today_for_session_in_24_hours()
+# datetime_to_run = datetime.now()
 # datetime_to_run = datetime.now() + timedelta(seconds=15)
 string_to_run = datetime_to_run.strftime("%H:%M:%S")
 print(string_to_run)

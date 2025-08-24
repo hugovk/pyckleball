@@ -30,7 +30,7 @@ def case_deregister(case_day_input: datetime, yes_pause: bool, user_type: str, h
     print_success(f"SUCCESS: Registrant was removed from session on {notification_input}.")
 
 if __name__ == "__main__":
-    case_day = datetime(2025, 10, 4, 13, 45)
+    case_day = datetime(2025, 8, 24, 20, 15)
     yes_pause = False
     user_type = "registrant"
     headless_mode = True

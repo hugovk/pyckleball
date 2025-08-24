@@ -5,10 +5,14 @@ from case_common import initialize_case
 from print_with_color import print_success, print_blue, print_yellow, print_red
 from date_variables import produce_case_day_strings, get_url_for_session_on
 from timer import Timer
+from wait_until_sign_up_moment import wait_until_sign_up_moment
 
 
-
-def case_register(case_day_input: datetime, yes_pause: bool, user_type: str, headless_true: bool):
+def case_register(case_day_input: datetime,
+                  yes_pause: bool,
+                  user_type: str,
+                  headless_true: bool,
+                  sign_up_moment: datetime = None):
     case_day_strings = produce_case_day_strings(case_day_input)
     notification_input = case_day_strings["my_session_string"]
     print_blue(f"ATTEMPT: Case_register.py is adding user to session on {notification_input}.")
@@ -24,14 +28,16 @@ def case_register(case_day_input: datetime, yes_pause: bool, user_type: str, hea
             page.get_by_role("button", name=case_day_strings['for_registering_bubble_mode']).first.click()
 
         if yes_pause: page.pause()
+
+        if sign_up_moment is not None: wait_until_sign_up_moment(sign_up_moment)
+
         page.get_by_role("button", name="+ Add My Name").click()
-
-
     print_success(f"SUCCESS: User was added to the session on {notification_input}.")
 
 if __name__ == "__main__":
-    case_day = datetime(2025, 10, 4, 13, 45)
+    case_day = datetime(2025, 8, 24, 20, 15)
     yes_pause = False
     user_type = "registrant"
     headless_mode = True
-    case_register(case_day, yes_pause, user_type, headless_mode)
+    sign_up_moment = datetime(2025, 8, 23, 22, 3)
+    case_register(case_day, yes_pause, user_type, headless_mode, sign_up_moment)

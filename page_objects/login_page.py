@@ -8,9 +8,6 @@ class LoginPage:
         self.page = page
         self.page.goto("https://playtimescheduler.com/login.php")
 
-    # def test_function(self) -> None:
-    #     print("This is a test function in the LoginPage class.")
-
     def populate_email(self, email: str) -> None:
         self.page.locator('input[name="email"]').fill(email)
 

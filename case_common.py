@@ -7,7 +7,8 @@ from page_objects.login_page import LoginPage
 from page_objects.dashboard import Dashboard
 
 
-def initialize_case(user_type: Literal["pro", "registrant"], headless_true: bool) -> Page:
+def initialize_case(user_type: Literal["pro", "registrant"],
+                    headless_true: bool) -> Page:
 
     load_dotenv(find_dotenv(), override=True)
     if user_type == "pro":
@@ -40,5 +41,6 @@ def initialize_case(user_type: Literal["pro", "registrant"], headless_true: bool
 
 
 if __name__ == "__main__":
-    dashboard = initialize_case("pro")
-    dashboard.pause()
+    headless_true = False
+    page = initialize_case("pro", headless_true)
+    page.pause()

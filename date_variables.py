@@ -40,7 +40,14 @@ def day_next_sign_up_opp_24_hours() -> datetime:
     else:
         return tomorrow.replace(minute=next_interval, second=0, microsecond=0)
 
-
+def sign_up_today_for_session_in_24_hours() -> datetime:
+    today = datetime.now()
+    minutes = datetime.now().minute
+    next_interval = (minutes // 15 + 1) * 15
+    if next_interval == 60:
+        return today.replace(minute=0, second=1, microsecond=0) + timedelta(hours=1)
+    else:
+        return today.replace(minute=next_interval, second=1, microsecond=0)
 
 # def get_date_one_week_before_today(datetime_input: datetime):
 #     date_one_week_before_date_input = datetime_input - timedelta(weeks=1)
@@ -62,6 +69,7 @@ if __name__ == "__main__":
     print(f"case_day_strings['my_session_string']--------------------{case_day_strings['my_session_string']}")
     print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
     print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
+    print(f"get_url_for_session_on(case_day)-------------------------{get_url_for_session_on(case_day)}")
     print("")
     print("CASE DAY NEXT 24-HR SIGN UP OPPORTUNITY...")
     case_day = day_next_sign_up_opp_24_hours()
@@ -71,5 +79,13 @@ if __name__ == "__main__":
     print(f"case_day_strings['my_session_string']--------------------{case_day_strings['my_session_string']}")
     print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
     print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
+    print(f"get_url_for_session_on(case_day)-------------------------{get_url_for_session_on(case_day)}")
     print("")
-    print(f"get_url_for_session_on(case_day)-----------------{get_url_for_session_on(case_day)}")
+    case_day = sign_up_today_for_session_in_24_hours()
+    case_day_strings = produce_case_day_strings(case_day)
+    print(f"case_day_strings['add_session_start_time']---------------{case_day_strings['add_session_start_time']}")
+    print(f"case_day_strings['add_session_end_time']-----------------{case_day_strings['add_session_end_time']}")
+    print(f"case_day_strings['my_session_string']--------------------{case_day_strings['my_session_string']}")
+    print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
+    print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
+    print(f"get_url_for_session_on(case_day)-------------------------{get_url_for_session_on(case_day)}")
