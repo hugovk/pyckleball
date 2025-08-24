@@ -46,7 +46,7 @@ def case_register(case_day_input: datetime,
             print_red(f"FAILURE: User was NOT added to the session on {notification_input}.")
 
 if __name__ == "__main__":
-    case_day = datetime(2025, 8, 24, 20, 15)
+    case_day = datetime(2025, 8, 25, 11, 15)
     user_type = "registrant"
     headless_mode = True
     case_register(case_day, user_type, headless_mode)
