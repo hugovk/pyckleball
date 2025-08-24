@@ -60,8 +60,10 @@ def get_url_for_session_on(datetime_input: datetime):
     return full_url
 
 if __name__ == "__main__":
+    ny_tz = timezone("America/New_York")
+
     print_blue("FOR RIGHT NOW")
-    case_day = datetime.now()
+    case_day = datetime.now(ny_tz)
     case_day_strings = produce_case_day_strings(case_day)
     print(f"case_day_strings['my_session_string']--------------------{case_day_strings['my_session_string']}")
     print(f"case_day_strings['add_session_start_time']---------------{case_day_strings['add_session_start_time']}")
