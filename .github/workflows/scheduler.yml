@@ -40,5 +40,6 @@ jobs:
       - name: Run case_register.py
         run: |
           source .venv/bin/activate
-          python verify_secrets_accessible.py
+          python hq.py
+          # python verify_secrets_accessible.py
           # python case_register.py
