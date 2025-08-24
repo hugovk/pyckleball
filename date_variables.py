@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from pytz import timezone
 from print_with_color import print_blue
 
 def produce_case_day_strings(case_day: datetime):
@@ -26,8 +27,10 @@ def produce_case_day_strings(case_day: datetime):
     }
 
 def day_next_sign_up_opp_24_hours() -> datetime:
-    tomorrow = datetime.now() + timedelta(days=1)
-    minutes = datetime.now().minute
+    ny_tz = timezone("America/New_York")
+    now = datetime.now(ny_tz)  # Use New York timezone
+    tomorrow = now + timedelta(days=1)
+    minutes = now.minute
     next_interval = (minutes // 15 + 1) * 15
     if next_interval == 60:
         return tomorrow.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
@@ -35,13 +38,14 @@ def day_next_sign_up_opp_24_hours() -> datetime:
         return tomorrow.replace(minute=next_interval, second=0, microsecond=0)
 
 def sign_up_today_for_session_in_24_hours() -> datetime:
-    today = datetime.now()
-    minutes = datetime.now().minute
+    ny_tz = timezone("America/New_York")
+    now = datetime.now(ny_tz)  # Use New York timezone
+    minutes = now.minute
     next_interval = (minutes // 15 + 1) * 15
     if next_interval == 60:
-        return today.replace(minute=0, second=1, microsecond=0) + timedelta(hours=1)
+        return now.replace(minute=0, second=1, microsecond=0) + timedelta(hours=1)
     else:
-        return today.replace(minute=next_interval, second=1, microsecond=0)
+        return now.replace(minute=next_interval, second=1, microsecond=0)
 
 # def get_date_one_week_before_today(datetime_input: datetime):
 #     date_one_week_before_date_input = datetime_input - timedelta(weeks=1)
