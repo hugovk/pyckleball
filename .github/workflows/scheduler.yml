@@ -37,9 +37,10 @@ jobs:
           uv sync
           python -m playwright install
 
-      - name: Run case_register.py
+      - name: Run hq.py
         run: |
           source .venv/bin/activate
-          python hq.py
+          python date_variables.py
+          # python hq.py
           # python verify_secrets_accessible.py
           # python case_register.py
