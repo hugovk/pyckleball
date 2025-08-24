@@ -40,7 +40,7 @@ jobs:
       - name: Run hq.py
         run: |
           source .venv/bin/activate
-          python date_variables.py
-          # python hq.py
+          python hq.py
+          # python date_variables.py
           # python verify_secrets_accessible.py
           # python case_register.py
