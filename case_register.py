@@ -11,16 +11,16 @@ from wait_until_sign_up_moment import wait_until_sign_up_moment
 
 def case_register(case_day_input: datetime,
                   user_type: str,
-                  headless_true: bool,
+                  headless: bool,
                   sign_up_moment: datetime = None):
 
-    yes_pause = not(headless_true)
+    yes_pause = not(headless)
     case_day_strings = produce_case_day_strings(case_day_input)
     notification_input = case_day_strings["my_session_string"]
     print_blue(f"ATTEMPT: Case_register.py is adding user to session on {notification_input}.")
 
     with Timer() as timer:
-        page = initialize_case(user_type, headless_true)
+        page = initialize_case(user_type, headless)
         page.goto(get_url_for_session_on(case_day_input))
         # if yes_pause: page.pause()
 

@@ -12,7 +12,6 @@ class LoginPage:
         self.page.locator('input[name="email"]').fill(email)
 
     def click_login_after_entering_email(self) -> None:
-        time.sleep(2)
         self.page.get_by_role("button", name="Login").click()
 
     def populate_password(self, password: str) -> None:
@@ -20,6 +19,8 @@ class LoginPage:
 
     def click_login_after_entering_password(self):
         self.page.get_by_role("button", name="Login").click()
+        # self.page.wait_for_url("https://playtimescheduler.com/index.php?l=1")  # Wait for navigation to complete
+        self.page.wait_for_url("https://playtimescheduler.com/index.php")  # Wait for navigation to complete
 
     def login_workflow(self, username: str, password: str) -> None:
         self.populate_email(username)

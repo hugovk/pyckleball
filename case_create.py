@@ -9,16 +9,16 @@ from date_picker_handler import date_picker_handler
 
 def case_create(case_day_input: datetime,
                 user_type: str,
-                headless_true: bool,
+                headless: bool,
                 sign_up_24_hr_advance: bool = False):
 
-    yes_pause = not(headless_true)
+    yes_pause = not(headless)
     case_day_strings = produce_case_day_strings(case_day_input)
     notification_input = case_day_strings["my_session_string"]
     print_blue(f"ATTEMPT: Case_create.py is creating pro session for {notification_input}.")
 
     with Timer() as timer:
-        page = initialize_case("pro", headless_true)
+        page = initialize_case("pro", headless)
         page.get_by_role("button", name="+ Add Session").click()
 
         page.locator("#session_location").select_option("1082") # Woburn Racquet Club

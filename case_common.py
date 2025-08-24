@@ -8,7 +8,7 @@ from page_objects.dashboard import Dashboard
 
 
 def initialize_case(user_type: Literal["pro", "registrant"],
-                    headless_true: bool) -> Page:
+                    headless: bool) -> Page:
 
     load_dotenv(find_dotenv(), override=True)
     if user_type == "pro":
@@ -22,7 +22,7 @@ def initialize_case(user_type: Literal["pro", "registrant"],
         raise ValueError(f"Environment variables {username} and/or {password} are not set.")
 
     playwright = sync_playwright().start()
-    if headless_true:
+    if headless:
         browser = playwright.chromium.launch(headless=True)
     else:
         browser = playwright.chromium.launch(headless=False, slow_mo=500)
@@ -41,6 +41,6 @@ def initialize_case(user_type: Literal["pro", "registrant"],
 
 
 if __name__ == "__main__":
-    headless_true = False
-    page = initialize_case("pro", headless_true)
+    headless = False
+    page = initialize_case("pro", headless)
     page.pause()
