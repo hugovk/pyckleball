@@ -7,7 +7,12 @@ from date_variables import produce_case_day_strings
 from timer import Timer
 from date_picker_handler import date_picker_handler
 
-def case_create(case_day_input: datetime, yes_pause: bool, user_type: str, headless_true: bool, sign_up_24_hr_advance: bool = False):
+def case_create(case_day_input: datetime,
+                user_type: str,
+                headless_true: bool,
+                sign_up_24_hr_advance: bool = False):
+
+    yes_pause = not(headless_true)
     case_day_strings = produce_case_day_strings(case_day_input)
     notification_input = case_day_strings["my_session_string"]
     print_blue(f"ATTEMPT: Case_create.py is creating pro session for {notification_input}.")
@@ -41,8 +46,7 @@ def case_create(case_day_input: datetime, yes_pause: bool, user_type: str, headl
 
 if __name__ == "__main__":
     case_day = datetime(2025, 10, 4, 13, 45)
-    yes_pause = False
     user_type = "pro"
     headless_mode = True
     sign_up_24_hr_advance = False
-    case_create(case_day, yes_pause, user_type, headless_mode, sign_up_24_hr_advance)
+    case_create(case_day, user_type, headless_mode, sign_up_24_hr_advance)

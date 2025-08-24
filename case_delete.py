@@ -7,7 +7,12 @@ from date_variables import produce_case_day_strings
 from timer import Timer
 
 
-def case_delete(case_day_input: datetime, yes_pause: bool, user_type: str, headless_true: bool):
+def case_delete(case_day_input: datetime,
+                yes_pause: bool,
+                user_type: str,
+                headless_true: bool):
+
+    yes_pause = not(headless_true)
     case_day_strings = produce_case_day_strings(case_day_input)
     notification_input = case_day_strings["my_session_string"]
     print_blue(f"ATTEMPT: Case_delete.py is deleting pro session for {notification_input}.")

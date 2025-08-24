@@ -1,7 +1,7 @@
+import time
 import os
 from dotenv import load_dotenv, find_dotenv
 from playwright.sync_api import Page, Locator
-# load_dotenv(find_dotenv(), override=True)
 
 class LoginPage:
     def __init__(self, page) -> None:
@@ -12,6 +12,7 @@ class LoginPage:
         self.page.locator('input[name="email"]').fill(email)
 
     def click_login_after_entering_email(self) -> None:
+        time.sleep(2)
         self.page.get_by_role("button", name="Login").click()
 
     def populate_password(self, password: str) -> None:
