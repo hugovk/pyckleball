@@ -3,18 +3,6 @@ name: Schedule run of hq.py
 on:
   schedule:
     - cron: '21 1 * * *'
-    # - cron: '10 2 * * MON'
-    # - cron: '*/120 * * * *' # Every 60 minutes
-
-    # ┌───────────── minute (0 - 59)
-    # │ ┌───────────── hour (0 - 23)
-    # │ │ ┌───────────── day of the month (1 - 31)
-    # │ │ │ ┌───────────── month (1 - 12)
-    # │ │ │ │ ┌───────────── day of the week (0 - 6)
-    # │ │ │ │ │
-    # │ │ │ │ │
-    # │ │ │ │ │
-    # * * * * *
 env:
   PRO_USER_NAME: ${{ secrets.PRO_USER_NAME }}
   PRO_USER_PASSWORD: ${{ secrets.PRO_USER_PASSWORD }}
