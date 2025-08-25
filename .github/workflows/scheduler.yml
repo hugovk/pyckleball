@@ -1,8 +1,8 @@
 name: Schedule run of hq.py
-# on: push
-on:
-  schedule:
-    - cron: '10 2 * * *'
+on: push
+# on:
+#   schedule:
+#     - cron: '12 2 * * *'
     # - cron: '10 2 * * MON'
     # - cron: '*/120 * * * *' # Every 60 minutes
 
@@ -51,7 +51,7 @@ jobs:
       - name: Run hq.py
         run: |
           source .venv/bin/activate
-          python hq.py
+          python date_variables.py
+          # python hq.py
           # python case_register.py
-          # python date_variables.py
           # python verify_secrets_accessible.py
