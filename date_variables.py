@@ -71,6 +71,7 @@ if __name__ == "__main__":
     print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
     print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
     print(f"get_url_for_session_on(case_day)-------------------------{get_url_for_session_on(case_day)}")
+    print(f"UTC version of right now---------------------------------{case_day.astimezone(utc)}")
     print("")
 
     print_blue("FOR A CASE DAY IN THE PAST:")
@@ -104,7 +105,9 @@ if __name__ == "__main__":
     print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
     print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
     print(f"get_url_for_session_on(case_day)-------------------------{get_url_for_session_on(case_day)}")
+    print("")
 
+    print_blue("UTC TIME FOR NEXT SIGN UP OPPORTUNITY:")
     case_day = sign_up_today_for_session_in_24_hours() - timedelta(days=1) - timedelta(minutes=5)
     utc_time = case_day.astimezone(utc)
     my_utc_string_understandable = utc_time.strftime('%a, %b %-d @ %-I:%M')
