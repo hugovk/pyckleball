@@ -1,7 +1,8 @@
-name: Schedule run of hq.py
-on:
-  schedule:
-    - cron: '41 2 * * *' # Every day at 02:41 UTC, which, in New York, is 10:41 PM the previous day
+name: Debug scheduling of cron job
+on: push
+# on:
+#   schedule:
+#     - cron: '41 2 * * *' # Every day at 02:41 UTC, which, in New York, is 10:41 PM the previous day
 env:
   PRO_USER_NAME: ${{ secrets.PRO_USER_NAME }}
   PRO_USER_PASSWORD: ${{ secrets.PRO_USER_PASSWORD }}
@@ -12,6 +13,10 @@ jobs:
   run-script:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug time
+        run: |
+          echo "Current time in UTC: $(date -u +'%Y-%m-%d %H:%M:%S')"
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
