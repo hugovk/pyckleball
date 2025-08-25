@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import time
+from pytz import timezone
 from print_with_color import print_blue, print_red
 
 def wait_until_sign_up_moment(sign_up_moment: datetime):
@@ -8,7 +9,8 @@ def wait_until_sign_up_moment(sign_up_moment: datetime):
 
     :param sign_up_moment: The datetime when the sign-up should occur.
     """
-    current_time = datetime.now()
+    ny_tz = timezone("America/New_York")
+    current_time = datetime.now(ny_tz)
     time_to_wait = (sign_up_moment - current_time).total_seconds() + 1
     time_to_wait_formatted = f"{round(time_to_wait)}"  # Round to the nearest whole number
     sign_up_moment_formatted = sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')
