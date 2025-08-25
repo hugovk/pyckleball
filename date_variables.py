@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from pytz import timezone
+from pytz import timezone, utc
 from print_with_color import print_blue
 
 def produce_case_day_strings(case_day: datetime):
@@ -104,3 +104,10 @@ if __name__ == "__main__":
     print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
     print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
     print(f"get_url_for_session_on(case_day)-------------------------{get_url_for_session_on(case_day)}")
+
+    case_day = sign_up_today_for_session_in_24_hours() - timedelta(days=1) - timedelta(minutes=5)
+    utc_time = case_day.astimezone(utc)
+    my_utc_string_understandable = utc_time.strftime('%a, %b %-d @ %-I:%M')
+    my_utc_string_cron = utc_time.strftime('%-M %-H * * *')
+    print(f"UTC time for next sign up opp:---------------------------{my_utc_string_understandable}")
+    print(f"UTC time in cron format:---------------------------------{my_utc_string_cron}")
