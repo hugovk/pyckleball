@@ -1,8 +1,7 @@
 name: Schedule run of hq.py
-# on: push
 on:
   schedule:
-    - cron: '21 1 * * *'
+    - cron: '26 2 * * *'
 env:
   PRO_USER_NAME: ${{ secrets.PRO_USER_NAME }}
   PRO_USER_PASSWORD: ${{ secrets.PRO_USER_PASSWORD }}
@@ -40,6 +39,3 @@ jobs:
         run: |
           source .venv/bin/activate
           python date_variables.py
-          # python hq.py
-          # python case_register.py
-          # python verify_secrets_accessible.py
