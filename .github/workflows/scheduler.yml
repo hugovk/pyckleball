@@ -1,9 +1,20 @@
-name: Schedule run of case_register.py
-on: push
-# on:
-#   schedule:
-#     - cron: '*/120 * * * *' # Every 60 minutes
+name: Schedule run of hq.py
+# on: push
+on:
+  schedule:
+    - cron: '55 1 * * MON'
+    - cron: '10 2 * * MON'
+    # - cron: '*/120 * * * *' # Every 60 minutes
 
+    # ┌───────────── minute (0 - 59)
+    # │ ┌───────────── hour (0 - 23)
+    # │ │ ┌───────────── day of the month (1 - 31)
+    # │ │ │ ┌───────────── month (1 - 12)
+    # │ │ │ │ ┌───────────── day of the week (0 - 6)
+    # │ │ │ │ │
+    # │ │ │ │ │
+    # │ │ │ │ │
+    # * * * * *
 env:
   PRO_USER_NAME: ${{ secrets.PRO_USER_NAME }}
   PRO_USER_PASSWORD: ${{ secrets.PRO_USER_PASSWORD }}
@@ -40,7 +51,7 @@ jobs:
       - name: Run hq.py
         run: |
           source .venv/bin/activate
-          python case_register.py
-          # python hq.py
+          python hq.py
+          # python case_register.py
           # python date_variables.py
           # python verify_secrets_accessible.py

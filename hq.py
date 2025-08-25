@@ -5,9 +5,12 @@ from date_variables import day_next_sign_up_opp_24_hours, sign_up_today_for_sess
 
 if __name__ == "__main__":
 
-    case_day = day_next_sign_up_opp_24_hours()
+    case_day = datetime(2025, 8, 25, 21, 00)
+    # case_day = day_next_sign_up_opp_24_hours()
     headless = True
-    sign_up_moment = sign_up_today_for_session_in_24_hours()
+    # sign_up_moment = sign_up_today_for_session_in_24_hours()
+
+    sign_up_moment = datetime(2025, 8, 24, 21, 00)
 
     # case_day = datetime(2025, 8, 25, 9, 15)
     # headless = True
